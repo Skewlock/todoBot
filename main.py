@@ -1,4 +1,5 @@
 import discord, os
+import logs
 
 botIntents = discord.Intents.all()
 
