@@ -68,6 +68,7 @@ async def create_task(interaction: discord.Interaction, task_name: str, task_own
     else:
         chan = interaction.guild.get_channel(channel)
         await chan.send("Nouvelle Tâche pour " + task_owner.mention + ": " + task_name)
+        await interaction.response.send_message("Task created in " + chan.mention)
 
 
 
