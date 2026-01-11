@@ -5,9 +5,9 @@ class TaskView(discord.ui.View):
         super().__init__()
     
     @discord.ui.button(style=discord.ButtonStyle.green, label="Task done !")
-    async def taskDone(interaction: discord.Interaction, button: discord.ui.Button):
+    async def taskDone(self, interaction: discord.Interaction, button: discord.ui.Button):
         print("AAAAAAAAAAAAAAAAAAAAAAAA")
 
     @discord.ui.button(style=discord.ButtonStyle.red, label="Task canceled !")
-    async def taskFailed(interaction: discord.Interaction, Button: discord.ui.Button):
+    async def taskFailed(self, interaction: discord.Interaction, Button: discord.ui.Button):
         print("BBBBBBBBBBBBBBBBBBBBBBBBBB")
