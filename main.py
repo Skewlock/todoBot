@@ -4,10 +4,11 @@ import logs
 import commands as cmds
 
 botIntents = discord.Intents.all()
-tree = app_commands.CommandTree(bot)
 
 bot = discord.Client(intents=botIntents)
 bot.prefix = "!"
+
+tree = app_commands.CommandTree(bot)
 
 @tree.command(
     name="createTask",
