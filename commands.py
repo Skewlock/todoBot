@@ -8,3 +8,11 @@ async def ping(msg, bot):
     embed.add_field(name="Ping du bot :", value=str(int(ping_)) + "ms", inline=True)
     embed.add_field(name="Ping de l'API :", value=str(int(bot.latency * 1000)) + "ms", inline=True)
     await pinger.edit(content=":white_check_mark: Calcul terminé !", embed=embed)
+
+@tree.command(
+    name="createTask",
+    description="Une command pour créer un tâche dans la todo list",
+    guild=discord.Object(id=1459887017470201939)
+)
+async def first_command(interaction):
+    await interaction.response.send_message("test")

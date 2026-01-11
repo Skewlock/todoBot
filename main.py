@@ -1,8 +1,10 @@
 import discord, os
+from discord import app_commands
 import logs
 import commands as cmds
 
 botIntents = discord.Intents.all()
+tree = app_commands.CommandTree(client)
 
 bot = discord.Client(intents=botIntents)
 bot.prefix = "!"
@@ -21,7 +23,7 @@ async def on_message(msg):
     logs.printInfo("Command " + command + " requested.")
 
     commands = {
-        #General commands
+        # General commands
         "ping": [cmds.ping, (msg, bot)]
     }
 
@@ -38,6 +40,7 @@ async def on_ready():
     logs.printValid("Bot ready !")
     logs.printValid("Default prefix: " + bot.prefix)
     logs.printValid("Mention: " + bot.user.mention + "\n")
+    await tree.sync(guild=discord.Object(id=1459887017470201939))
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("prefix: "+ bot.prefix))
 
 bot.run(os.environ["TOKEN"])
