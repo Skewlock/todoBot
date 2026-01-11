@@ -9,6 +9,12 @@ tree = app_commands.CommandTree(client)
 bot = discord.Client(intents=botIntents)
 bot.prefix = "!"
 
+@tree.command(
+    name="createTask",
+    description="Une command pour créer un tâche dans la todo list",
+    guild=discord.Object(id=1459887017470201939)
+)
+
 @bot.event
 async def on_message(msg):
     # Get command
