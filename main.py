@@ -1,4 +1,4 @@
-import discord, os
+import discord, os, time
 from discord.ext import commands
 from discord import app_commands
 import logs
