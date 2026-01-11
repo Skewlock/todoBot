@@ -11,7 +11,7 @@ bot.prefix = "!"
 tree = app_commands.CommandTree(bot)
 
 @tree.command(
-    name="createTask",
+    name="create_task",
     description="Une command pour créer un tâche dans la todo list",
     guild=discord.Object(id=1459887017470201939)
 )
