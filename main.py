@@ -63,7 +63,7 @@ async def create_task(interaction: discord.Interaction, task_name: str, task_own
     for i in users:
         if i.user_id == task_owner.id:
             channel = i.channel_id
-    if channel = None:
+    if channel == None:
         interaction.response.send_message("Task owner isn't registered in the system, please inform Miel if this needs to be fixed.")
     else:
         chan = interaction.guild.get_channel(channel)
