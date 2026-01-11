@@ -2,6 +2,7 @@ import discord, os, time
 from discord.ext import commands
 from discord import app_commands
 from users import User
+import ui
 import logs
 
 GUILD_ID = discord.Object(id=1459887017470201939)
@@ -67,7 +68,7 @@ async def create_task(interaction: discord.Interaction, task_name: str, task_own
         interaction.response.send_message("Task owner isn't registered in the system, please inform Miel if this needs to be fixed.")
     else:
         chan = interaction.guild.get_channel(channel)
-        await chan.send("Nouvelle Tâche pour " + task_owner.mention + ": " + task_name)
+        await chan.send("Nouvelle Tâche pour " + task_owner.mention + ": " + task_name, view=ui.TaskView())
         await interaction.response.send_message("Task created in " + chan.mention)
 
 
