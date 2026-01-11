@@ -44,7 +44,7 @@ async def ping(interaction: discord.Interaction):
     embed = discord.Embed(title="Results :", color=0x4c99c2, type="rich")
     embed.add_field(name="Ping du bot :", value=str(int(ping_)) + "ms", inline=True)
     embed.add_field(name="Ping de l'API :", value=str(int(bot.latency * 1000)) + "ms", inline=True)
-    await pinger.ressource.edit(content=":white_check_mark: Calcul terminé !", embed=embed)
+    await pinger.resource.edit(content=":white_check_mark: Calcul terminé !", embed=embed)
 
 @bot.tree.command(
     name="create_task",
