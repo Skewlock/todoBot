@@ -2,7 +2,7 @@ import discord, os
 
 botIntents = discord.Intents.all()
 
-bot = discord.Client(botIntents)
+bot = discord.Client(intents=botIntents)
 bot.prefix = "!"
 
 print("Bot started:\n\n")
