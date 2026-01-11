@@ -2,7 +2,7 @@ import discord
 
 class TaskView(discord.ui.View):
     def __init__(self):
-        super().__init__()
+        super().__init__(timeout=None)
     
     @discord.ui.button(style=discord.ButtonStyle.green, label="Task done !")
     async def taskDone(self, interaction: discord.Interaction, button: discord.ui.Button):

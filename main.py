@@ -20,6 +20,9 @@ class Client(commands.Bot):
         logs.printValid("Default prefix: " + self.command_prefix)
         logs.printValid("Mention: " + self.user.mention + "\n")
         await bot.change_presence(status=discord.Status.online, activity=discord.Game("C le baute isi"))
+
+        self.add_view(TaskView())
+        print(self.persistent_views)
         try:
             synced = await self.tree.sync(guild=GUILD_ID)
             print(f'Synced {len(synced)} commands to guild {GUILD_ID.id}')
