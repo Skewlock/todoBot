@@ -7,7 +7,7 @@ GUILD_ID = discord.Object(id=1459887017470201939)
 
 class Client(commands.Bot):
 
-    async def on_ready():
+    async def on_ready(self):
         logs.printValid("Bot ready !")
         logs.printValid("Default prefix: " + self.command_prefix)
         logs.printValid("Mention: " + self.user.mention + "\n")
@@ -19,27 +19,14 @@ class Client(commands.Bot):
             print("Error syncing command: " + e)
 
 
-    async def on_message(msg):
+    async def on_message(self, msg):
         # Get command
         if msg.author == self.user:
             return
 
         if msg.content[0] != self.prefix:
             return
-
-        instruction = msg.content[1:]
-        command = instruction.split(" ")[0]
-        logs.printInfo("Command " + command + " requested.")
-        commands = {
-            # General commands
-            "ping": [cmds.ping, (msg, bot)]
-        }
-        # Launch command
-        func = commands.get(command)
-        if func is None:
-            return logs.printWarning("Command " + command + " doesn't exists.\n")
-        await func[0](*func[1])
-        logs.printInfo("Command " + command + " successfully done.\n")
+        return
 
 
 botIntents = discord.Intents.all()
