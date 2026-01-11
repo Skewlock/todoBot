@@ -68,7 +68,10 @@ async def create_task(interaction: discord.Interaction, task_name: str, task_own
         interaction.response.send_message("Task owner isn't registered in the system, please inform Miel if this needs to be fixed.")
     else:
         chan = interaction.guild.get_channel(channel)
-        await chan.send("Nouvelle Tâche pour " + task_owner.mention + ": " + task_name, view=ui.TaskView())
+        created = int(time.time())
+        embed = discord.Embed(title=task_name, color=0xfcba03, type='rich')
+        embed.add_field(name="Created:", value="<t:{created}:R>")
+        await chan.send("Nouvelle Tâche pour " + task_owner.mention + ": " + task_name, view=ui.TaskView(), embed=embed)
         await interaction.response.send_message("Task created in " + chan.mention)
 
 
