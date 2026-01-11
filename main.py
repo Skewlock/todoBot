@@ -24,7 +24,7 @@ class Client(commands.Bot):
         if msg.author == self.user:
             return
 
-        if msg.content[0] != self.prefix:
+        if msg.content[0] != self.command_prefix:
             return
         return
 
