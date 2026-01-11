@@ -4,7 +4,7 @@ import logs
 import commands as cmds
 
 botIntents = discord.Intents.all()
-tree = app_commands.CommandTree(client)
+tree = app_commands.CommandTree(bot)
 
 bot = discord.Client(intents=botIntents)
 bot.prefix = "!"
