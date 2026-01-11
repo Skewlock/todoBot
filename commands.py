@@ -10,5 +10,5 @@ async def ping(msg, bot):
     await pinger.edit(content=":white_check_mark: Calcul terminé !", embed=embed)
 
 
-async def first_command(interaction):
+async def create_task(interaction):
     await interaction.response.send_message("test")
