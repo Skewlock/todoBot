@@ -16,7 +16,7 @@ class Client(commands.Bot):
             synced = await tree.sync(guild=GUILD_ID)
             print(f'Synced {len(synced)} commands to guild {GUILD_ID.id}')
         except Exception as e:
-            print("Error syncing command: " + e)
+            print("Error syncing command: " + str(e))
 
 
     async def on_message(self, msg):
