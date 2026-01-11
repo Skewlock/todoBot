@@ -13,7 +13,7 @@ class Client(commands.Bot):
         logs.printValid("Mention: " + self.user.mention + "\n")
         await bot.change_presence(status=discord.Status.online, activity=discord.Game("C le baute isi"))
         try:
-            synced = await tree.sync(guild=GUILD_ID)
+            synced = await self.tree.sync(guild=GUILD_ID)
             print(f'Synced {len(synced)} commands to guild {GUILD_ID.id}')
         except Exception as e:
             print("Error syncing command: " + str(e))
