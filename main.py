@@ -2,10 +2,8 @@ import discord, os
 
 botIntents = discord.Intents.all()
 
-bot = discord.Client(intents=botIntents)
+bot = discord.Client(botIntents)
 bot.prefix = "!"
-
-print("Bot started:\n\n")
 
 @bot.event
 async def on_message(msg):
@@ -30,7 +28,7 @@ async def on_message(msg):
     if func is None:
         return logs.printWarning("Command " + command + " doesn't exists.\n")
     await func[0](*func[1])
-    print("Command " + command + " successfully done.\n")
+    logs.printInfo("Command " + command + " successfully done.\n")
 
 
 @bot.event
