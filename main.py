@@ -1,9 +1,16 @@
 import discord, os, time
 from discord.ext import commands
 from discord import app_commands
+from users import User
 import logs
 
 GUILD_ID = discord.Object(id=1459887017470201939)
+CATEGORY_ID = 1459947666653057096
+
+miel = User(channel_id=1459948940202872913, user_id=250711124557824001)
+kawa = User(channel_id=1459948924679880909, user_id=962368208705323069)
+
+users = [miel, kawa]
 
 class Client(commands.Bot):
 
@@ -39,20 +46,29 @@ bot = Client(command_prefix="!", intents=botIntents)
 )
 async def ping(interaction: discord.Interaction):
     time_then = time.monotonic()
-    pinger = await interaction.response.send_message("Calcul en cours du ping...")
+    pinger = await interaction.response.send_message("Pinging...")
     ping_ = (1000 * (time.monotonic() - time_then))
     embed = discord.Embed(title="Results :", color=0x4c99c2, type="rich")
-    embed.add_field(name="Ping du bot :", value=str(int(ping_)) + "ms", inline=True)
-    embed.add_field(name="Ping de l'API :", value=str(int(bot.latency * 1000)) + "ms", inline=True)
-    await pinger.resource.edit(content=":white_check_mark: Calcul terminé !", embed=embed)
+    embed.add_field(name="Bot ping :", value=str(int(ping_)) + "ms", inline=True)
+    embed.add_field(name="API ping :", value=str(int(bot.latency * 1000)) + "ms", inline=True)
+    await pinger.resource.edit(content=":white_check_mark: Done !", embed=embed)
 
 @bot.tree.command(
     name="create_task",
-    description="Crée une tâche dans la todo list",
+    description="Create a task on someone's todolist",
     guild=GUILD_ID
 )
-async def create_task(interaction: discord.Interaction, task_name: str):
-    await interaction.response.send_message("test")
+async def create_task(interaction: discord.Interaction, task_name: str, task_owner: discord.Member):
+    channel = None
+    for i in users:
+        if i.user_id == task_owner.id:
+            channel = i.channel_id
+    if channel = None:
+        interaction.response.send_message("Task owner isn't registered in the system, please inform Miel if this needs to be fixed.")
+    else:
+        chan = interaction.guild.get_channel(channel)
+        await chan.send("Nouvelle Tâche pour " + task_owner.mention + ": " + task_name)
+
 
 
 bot.run(os.environ["TOKEN"])
