@@ -51,7 +51,7 @@ async def ping(interaction: discord.Interaction):
     description="Create a task on someone's todolist",
     guild=GUILD_ID
 )
-async def create_task(interaction: discord.Interaction, task_name: str, task_owner: discord.Member, task_description=""):
+async def create_task(interaction: discord.Interaction, task_name: str, task_owner: discord.Member, task_description: str=""):
     channel = None
     for i in users:
         if i.user_id == task_owner.id:
