@@ -69,25 +69,25 @@ async def create_task(interaction: discord.Interaction, task_name: str, task_own
         await interaction.response.send_message("Task created in " + chan.mention, ephemeral=True)
 
 
-@bot.tree.command(
-    name="edit_task",
-    description="Edit a task in a todolist",
-    guild=GUILD_ID
-)
-async def edit_task(interaction: discord.Interaction, new_task_name: str, task: discord.Message):
-    embed_title = new_task_name
-    created = task.embeds[0].fields[0].value
-    status = task.embeds[0].fields[1].value
-    desc = task.embeds[0].description
-    mention = task.mentions[0].mention
-    color = task.embeds[0].color
-    msg_content = "New task for " + mention + ": " + new_task_name
+# @bot.tree.command(
+#     name="edit_task",
+#     description="Edit a task in a todolist",
+#     guild=GUILD_ID
+# )
+# async def edit_task(interaction: discord.Interaction, new_task_name: str, task: discord.Message):
+#     embed_title = new_task_name
+#     created = task.embeds[0].fields[0].value
+#     status = task.embeds[0].fields[1].value
+#     desc = task.embeds[0].description
+#     mention = task.mentions[0].mention
+#     color = task.embeds[0].color
+#     msg_content = "New task for " + mention + ": " + new_task_name
 
-    embed = discord.Embed(title=embed_title, color=color, description=desc, type='rich')
-    embed.add_field(name="Created:", value=created)
-    embed.add_field(name="Status:", value=status)
-    await task.edit(content=msg_content, view=TaskView(), embed=embed)
-    await interaction.response.send_message("Task edited !", ephemeral=True)
+#     embed = discord.Embed(title=embed_title, color=color, description=desc, type='rich')
+#     embed.add_field(name="Created:", value=created)
+#     embed.add_field(name="Status:", value=status)
+#     await task.edit(content=msg_content, view=TaskView(), embed=embed)
+#     await interaction.response.send_message("Task edited !", ephemeral=True)
 
 
 bot.run(os.environ["TOKEN"])

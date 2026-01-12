@@ -45,3 +45,19 @@ class TaskView(discord.ui.View):
         embed.add_field(name="Status:", value=":no_entry: Cancelled")
         await interaction.message.edit(content=msg_content, view=TaskView(), embed=embed)
         await interaction.response.send_message('Task marked as failed', ephemeral=True)
+
+    # @discord.ui.button()
+    # async def edit_task
+    #     embed_title = new_task_name
+    #     created = task.embeds[0].fields[0].value
+    #     status = task.embeds[0].fields[1].value
+    #     desc = task.embeds[0].description
+    #     mention = task.mentions[0].mention
+    #     color = task.embeds[0].color
+    #     msg_content = "New task for " + mention + ": " + new_task_name
+
+    #     embed = discord.Embed(title=embed_title, color=color, description=desc, type='rich')
+    #     embed.add_field(name="Created:", value=created)
+    #     embed.add_field(name="Status:", value=status)
+    #     await task.edit(content=msg_content, view=TaskView(), embed=embed)
+    #     await interaction.response.send_message("Task edited !", ephemeral=True)
