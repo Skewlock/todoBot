@@ -29,17 +29,6 @@ class Client(commands.Bot):
         except Exception as e:
             print("Error syncing command: " + str(e))
 
-
-    async def on_message(self, msg):
-        # Get command
-        if msg.author == self.user:
-            return
-
-        if msg.content[0] != self.command_prefix:
-            return
-        return
-
-
 botIntents = discord.Intents.all()
 bot = Client(command_prefix="!", intents=botIntents)
 
@@ -72,9 +61,9 @@ async def create_task(interaction: discord.Interaction, task_name: str, task_own
     else:
         chan = interaction.guild.get_channel(channel)
         created = int(time.time())
-        embed = discord.Embed(title=task_name, color=0xfcba03, type='rich')
+        embed = discord.Embed(title=task_name, color=discord.Colour.blurple(), type='rich')
         embed.add_field(name="Created:", value=f"<t:{created}:R>")
-        await chan.send("Nouvelle Tâche pour " + task_owner.mention + ": " + task_name, view=ui.TaskView(), embed=embed)
+        await chan.send("New task for " + task_owner.mention + ": " + task_name, view=ui.TaskView(), embed=embed)
         await interaction.response.send_message("Task created in " + chan.mention)
 
 
