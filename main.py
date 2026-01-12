@@ -51,7 +51,7 @@ async def ping(interaction: discord.Interaction):
     description="Create a task on someone's todolist",
     guild=GUILD_ID
 )
-async def create_task(interaction: discord.Interaction, task_name: str, task_owner: discord.Member):
+async def create_task(interaction: discord.Interaction, task_name: str, task_owner: discord.Member, task_description=""):
     channel = None
     for i in users:
         if i.user_id == task_owner.id:
@@ -61,8 +61,9 @@ async def create_task(interaction: discord.Interaction, task_name: str, task_own
     else:
         chan = interaction.guild.get_channel(channel)
         created = int(time.time())
-        embed = discord.Embed(title=task_name, color=discord.Colour.blurple(), type='rich')
+        embed = discord.Embed(title=task_name, color=discord.Colour.blurple(), description=task_description, type='rich')
         embed.add_field(name="Created:", value=f"<t:{created}:R>")
+        embed.add_field(name="Status:", value=":up: Open")
         await chan.send("New task for " + task_owner.mention + ": " + task_name, view=ui.TaskView(), embed=embed)
         await interaction.response.send_message("Task created in " + chan.mention)
 
