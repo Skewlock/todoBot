@@ -44,7 +44,7 @@ class TaskView(discord.ui.View):
         embed.add_field(name="Created:", value=created)
         embed.add_field(name="Status:", value=":no_entry: Cancelled")
         await interaction.message.edit(content=msg_content, view=TaskView(), embed=embed)
-        await interaction.response.send_message('Task marked as failed', ephemeral=True)
+        await interaction.response.send_message('Task marked as cancelled', ephemeral=True)
 
     # @discord.ui.button()
     # async def edit_task
