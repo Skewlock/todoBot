@@ -12,7 +12,7 @@ class TaskView(discord.ui.View):
 
         embed = discord.Embed(title=embed_title, color=discord.Colour.green(), type='rich')
         embed.add_field(name="Created:", value=created)
-        await interaction.message.edit("New task for " + mention + ": " + embed_title, view=self, embed=embed)
+        await interaction.message.edit("New task for " + mention + ": " + embed_title, view=TaskView(), embed=embed)
         await interaction.response.send_message('Task marked as success !', ephemeral=True)
 
     @discord.ui.button(style=discord.ButtonStyle.blurple, label="Repoen task", custom_id="todo:reopened")
@@ -22,7 +22,7 @@ class TaskView(discord.ui.View):
 
         embed = discord.Embed(title=embed_title, color=discord.Colour.blurple(), type='rich')
         embed.add_field(name="Created:", value=created)
-        await interaction.message.edit("New task for " + mention + ": " + embed_title, view=self, embed=embed)
+        await interaction.message.edit("New task for " + mention + ": " + embed_title, view=TaskView(), embed=embed)
         await interaction.response.send_message('Task reopened', ephemeral=True)
 
     @discord.ui.button(style=discord.ButtonStyle.red, label="Cancel task", custom_id="todo:failed")
@@ -32,5 +32,5 @@ class TaskView(discord.ui.View):
 
         embed = discord.Embed(title=embed_title, color=discord.Colour.red(), type='rich')
         embed.add_field(name="Created:", value=created)
-        await interaction.message.edit("New task for " + mention + ": " + embed_title, view=self, embed=embed)
+        await interaction.message.edit("New task for " + mention + ": " + embed_title, view=TaskView(), embed=embed)
         await interaction.response.send_message('Task marked as failed', ephemeral=True)
