@@ -46,6 +46,7 @@ async def ping(interaction: discord.Interaction):
     embed.add_field(name="API ping :", value=str(int(bot.latency * 1000)) + "ms", inline=True)
     await pinger.resource.edit(content=":white_check_mark: Done !", embed=embed)
 
+
 @bot.tree.command(
     name="create_task",
     description="Create a task on someone's todolist",
@@ -65,7 +66,28 @@ async def create_task(interaction: discord.Interaction, task_name: str, task_own
         embed.add_field(name="Created:", value=f"<t:{created}:R>")
         embed.add_field(name="Status:", value=":up: Open")
         await chan.send("New task for " + task_owner.mention + ": " + task_name, view=ui.TaskView(), embed=embed)
-        await interaction.response.send_message("Task created in " + chan.mention)
+        await interaction.response.send_message("Task created in " + chan.mention, ephemeral=True)
+
+
+@bot.tree.command(
+    name="edit_task",
+    description="Edit a task in a todolist",
+    guild=GUILD_ID
+)
+async def edit_task(interaction: discord.Interaction, new_task_name: str, task: discord.Message):
+    embed_title = new_task_name
+    created = task.embeds[0].fields[0].value
+    status = task.embeds[0].fields[1].value
+    desc = task.embeds[0].description
+    mention = task.mentions[0].mention
+    color = task.embeds[0].color
+    msg_content = "New task for " + mention + ": " + new_task_name
+
+    embed = discord.Embed(title=embed_title, color=color, description=desc, type='rich')
+    embed.add_field(name="Created:", value=created)
+    embed.add_field(name="Status:", value=status)
+    await task.edit(content=msg_content, view=TaskView(), embed=embed)
+    await interaction.response.send_message("Task edited !", ephemeral=True)
 
 
 bot.run(os.environ["TOKEN"])
